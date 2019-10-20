@@ -137,9 +137,6 @@
       <DependentUpon>201910202302428_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Autor.cs" />
-    <Compile Include="Models\Categoria.cs" />
-    <Compile Include="Models\Livro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -199,6 +197,12 @@
     <EmbeddedResource Include="Migrations\201910202302428_v1.resx">
       <DependentUpon>201910202302428_v1.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookStores.Domain\BookStores.Domain.csproj">
+      <Project>{a412eb92-974e-43ab-b9f2-08abe9b94a89}</Project>
+      <Name>BookStores.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
