@@ -129,15 +129,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\BookStoreDataContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910202302428_v1.cs" />
-    <Compile Include="Migrations\201910202302428_v1.designer.cs">
-      <DependentUpon>201910202302428_v1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Mapping\CategoriaMap.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\VincularLivroAutorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -175,10 +174,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Teste\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -192,11 +191,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910202302428_v1.resx">
-      <DependentUpon>201910202302428_v1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookStores.Domain\BookStores.Domain.csproj">
