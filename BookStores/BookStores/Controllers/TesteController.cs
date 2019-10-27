@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStores.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,17 @@ namespace BookStores.Controllers
 {
     public class TesteController : Controller
     {
+        public JsonResult Teste()
+        {
+            var campo = Request.Form["Campo01"];
+            var autor = new Autor
+            {
+                Id = 1,
+                Nome = "Alan Martins"
+            };
+
+            return Json(autor, JsonRequestBehavior.AllowGet);
+        }
         // GET: Teste
         public ActionResult Index()
         {
