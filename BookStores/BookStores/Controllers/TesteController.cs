@@ -7,8 +7,25 @@ using System.Web.Mvc;
 
 namespace BookStores.Controllers
 {
+    [RoutePrefix("teste")]
+    [Route("{action=Dados}")] //troca para a rota padrao
     public class TesteController : Controller
     {
+        public ViewResult Dados(int id)
+        {
+            var autor = new Autor
+            {
+                Id = 1,
+                Nome = "Alan Martins"
+            };
+
+            ViewBag.Categoria = "Produtos de limpeza";
+            ViewData["Categoria"] = "Produtos de informatica";
+            TempData["Categoria"] = "Produtos de escritorio";
+            Session["Categoria"] = "Produtos de estudo.";
+
+            return View(autor);
+        }
         public JsonResult UmaAction(int id, string nome)
         {
             var autor = new Autor
@@ -102,6 +119,18 @@ namespace BookStores.Controllers
             {
                 return View();
             }
+        }
+
+        [Route("teste/minharota/{id:int}")]
+        public string MinhaAction(int id)
+        {
+            return "Ok! Cheguei na rota!";
+        }
+
+        [Route("~/rotaignorada/{id:int}")]
+        public string MinhaAction2(int id)
+        {
+            return "Ok! Cheguei na rota!";
         }
     }
 }
