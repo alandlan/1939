@@ -9,16 +9,22 @@ namespace BookStores.Controllers
 {
     public class TesteController : Controller
     {
-        public JsonResult Teste()
+        public JsonResult UmaAction(int id, string nome)
         {
-            var campo = Request.Form["Campo01"];
             var autor = new Autor
             {
-                Id = 1,
-                Nome = "Alan Martins"
+                Id = id,
+                Nome = nome
             };
 
             return Json(autor, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ActionName("Autor")]
+        public JsonResult ActionDois(Autor autor)
+        {
+            return Json(autor);
         }
         // GET: Teste
         public ActionResult Index()
