@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStores.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,9 +8,11 @@ using System.Web.Mvc;
 namespace BookStores.Controllers
 {
     [RoutePrefix("autor")]
+    //[LogActionFilter]
     public class AuthorController : Controller
     {
         [Route("listar")]
+        //[LogActionFilter]
         public ActionResult Index()
         {
             return View();

@@ -19,7 +19,8 @@ namespace BookStores
             var constraintsResolver = new DefaultInlineConstraintResolver();
             constraintsResolver.ConstraintMap.Add("values", typeof(ValuesConstraint));
 
-            routes.MapMvcAttributeRoutes(constraintsResolver);
+            //routes.MapMvcAttributeRoutes(constraintsResolver);
+            routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
                 name: "Default",

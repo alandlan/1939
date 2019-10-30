@@ -145,10 +145,10 @@ namespace BookStores.Controllers
             return "Ok! Cheguei na rota!" + categoria;
         }
 
-        [Route("rota4/{estacao:(primavera|verao|outuno|inverno)}")]
-        public string MinhaAction5(string estacao)
-        {
-            return "Olá, estamos no " + estacao;
-        }
+        //[Route("rota4/{estacao:(primavera|verao|outuno|inverno)}")]
+        //public string MinhaAction5(string estacao)
+        //{
+        //    return "Olá, estamos no " + estacao;
+        //}
     }
 }
