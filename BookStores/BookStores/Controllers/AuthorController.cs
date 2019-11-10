@@ -72,5 +72,12 @@ namespace BookStores.Controllers
             _repository.Delete(id);
             return RedirectToAction("Index");
         }
+
+        [Route("criar")]
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }
