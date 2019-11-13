@@ -7,8 +7,10 @@ using System.Web.Mvc;
 
 namespace BookStores.ViewModels
 {
-    public class CreateBookViewModel
+    public class EditorBookViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage ="*")]
         [Display(Name = "Nome do Livro")]
         public string Nome { get; set; }

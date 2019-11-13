@@ -1,4 +1,5 @@
 ﻿using BookStores.Context;
+using BookStores.Domain;
 using BookStores.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,20 @@ namespace BookStores.Controllers
     [RoutePrefix("Livros")]
     public class LivroController : Controller
     {
-        readonly BookStoreDataContext _bookStore = new BookStoreDataContext();
+        readonly BookStoreDataContext _db = new BookStoreDataContext();
+        
+        [Route("listar")]
+        public ActionResult Index()
+        {
+            return View(_db.Livros.ToList());
+        }
+
         // GET: Livro
         [Route("criar")]
         public ActionResult Create()
         {
-            var categorias = _bookStore.Categorias.ToList();
-            var model = new CreateBookViewModel
+            var categorias = _db.Categorias.ToList();
+            var model = new EditorBookViewModel
             {
                 Nome = "",
                 ISBN = "",
@@ -28,11 +36,35 @@ namespace BookStores.Controllers
             return View(model);
         }
 
+        [Route("editar")]
+        public ActionResult Edit(int Id)
+        {
+            var categorias = _db.Categorias.ToList();
+            var livro = _db.Livros.Find(Id);
+            var model = new EditorBookViewModel
+            {
+                Nome = livro.Nome,
+                ISBN = livro.ISBN,
+                CategoriaId = livro.CategoriaId,
+                CategoriaOptions = new SelectList(categorias, "Id", "Nome")
+            };
+
+            return View(model);
+        }
+
         [Route("criar")]
         [HttpPost]
-        public ActionResult Create(CreateBookViewModel modelBook)
+        public ActionResult Create(EditorBookViewModel model)
         {
-            return View();
+            var livro = new Livro();
+            livro.Nome = model.Nome;
+            livro.ISBN = model.ISBN;
+            livro.DataLancamento = model.DataLancamento;
+            livro.CategoriaId = model.CategoriaId;
+            _db.Livros.Add(livro);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

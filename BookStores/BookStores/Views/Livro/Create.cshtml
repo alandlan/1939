@@ -1,35 +1,28 @@
-﻿@model BookStores.ViewModels.CreateBookViewModel
+﻿@model BookStores.ViewModels.EditorBookViewModel
 @{
     ViewBag.Title = "Criando um novo livro...";
 }
 
+@helper MinhaFuncao(string nome)
+{
+    <text>Você está logado com @nome </text>
+}
+
+<p>
+    @MinhaFuncao("Alan Martins")
+</p>
+
+
 <h2>Novo Livro</h2>
 
-<form>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Nome)
-        @Html.EditorFor(model => model.Nome, new { HtmlAttributes = new { @class = "form-control" } })
-    </div>
+@using (Html.BeginForm())
+{
+    @Html.Partial("Partials/EditorBookPartial", Model);
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ISBN)
-        @Html.EditorFor(model => model.ISBN, new { HtmlAttributes = new { @class = "form-control" } })
-    </div>
+    <button type="submit" class="btn btn-primary">Criar</button>
+}
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DataLancamento)
-        @Html.EditorFor(model => model.DataLancamento, new { HtmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CategoriaId)
-        @Html.DropDownListFor(
-                        m => m.CategoriaId,
-                        Model.CategoriaOptions,
-                        "Selecione uma opção...",
-                        new { HtmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
