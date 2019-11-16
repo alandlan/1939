@@ -204,6 +204,7 @@
     <Content Include="Views\Livro\Partials\EditorBookPartial.cshtml" />
     <Content Include="Views\Livro\Edit.cshtml" />
     <Content Include="Views\Livro\Index.cshtml" />
+    <Content Include="Views\Livro\Partials\ListBookPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

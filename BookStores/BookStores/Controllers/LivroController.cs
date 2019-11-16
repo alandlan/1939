@@ -13,7 +13,7 @@ namespace BookStores.Controllers
     public class LivroController : Controller
     {
         readonly BookStoreDataContext _db = new BookStoreDataContext();
-        
+
         [Route("listar")]
         public ActionResult Index()
         {
@@ -36,6 +36,21 @@ namespace BookStores.Controllers
             return View(model);
         }
 
+        [Route("criar")]
+        [HttpPost]
+        public ActionResult Create(EditorBookViewModel model)
+        {
+            var livro = new Livro();
+            livro.Nome = model.Nome;
+            livro.ISBN = model.ISBN;
+            livro.DataLancamento = model.DataLancamento;
+            livro.CategoriaId = model.CategoriaId;
+            _db.Livros.Add(livro);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         [Route("editar")]
         public ActionResult Edit(int Id)
         {
@@ -50,18 +65,15 @@ namespace BookStores.Controllers
             };
 
             return View(model);
+
         }
 
-        [Route("criar")]
+        [Route("editar")]
         [HttpPost]
-        public ActionResult Create(EditorBookViewModel model)
+        public ActionResult Edit(EditorBookViewModel model)
         {
-            var livro = new Livro();
-            livro.Nome = model.Nome;
-            livro.ISBN = model.ISBN;
-            livro.DataLancamento = model.DataLancamento;
-            livro.CategoriaId = model.CategoriaId;
-            _db.Livros.Add(livro);
+            var livro = _db.Livros.Find(model.Id);
+            _db.Entry<Livro>(livro).State = System.Data.Entity.EntityState.Modified;
             _db.SaveChanges();
 
             return RedirectToAction("Index");
