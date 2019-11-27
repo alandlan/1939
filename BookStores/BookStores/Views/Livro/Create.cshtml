@@ -1,6 +1,7 @@
 ﻿@model BookStores.ViewModels.EditorBookViewModel
 @{
     ViewBag.Title = "Criando um novo livro...";
+    Layout = "~/Views/Shared/_LayoutNovo.cshtml";
 }
 
 @helper MinhaFuncao(string nome)
@@ -20,6 +21,15 @@
     @Html.Partial("Partials/EditorBookPartial", Model);
 
     <button type="submit" class="btn btn-primary">Criar</button>
+}
+
+@section menu{
+    <div>
+        Olá, você está na pagina criação
+        <p>
+            <a href="@Url.Action("Index")">Voltar</a>
+        </p>
+    </div>
 }
 
 @section Scripts{
