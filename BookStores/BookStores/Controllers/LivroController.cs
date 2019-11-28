@@ -24,6 +24,8 @@ namespace BookStores.Controllers
         [Route("criar")]
         public ActionResult Create()
         {
+            ModelState.AddModelError("Mensagem", "Algum erro ocorreu!");
+
             var categorias = _db.Categorias.ToList();
             var model = new EditorBookViewModel
             {
@@ -40,6 +42,14 @@ namespace BookStores.Controllers
         [HttpPost]
         public ActionResult Create(EditorBookViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                var categorias = _db.Categorias.ToList();
+                model.CategoriaOptions = new SelectList(categorias, "Id", "Nome");
+
+                return View(model);
+            }
+
             var livro = new Livro();
             livro.Nome = model.Nome;
             livro.ISBN = model.ISBN;
@@ -47,6 +57,20 @@ namespace BookStores.Controllers
             livro.CategoriaId = model.CategoriaId;
             _db.Livros.Add(livro);
             _db.SaveChanges();
+
+            try
+            {
+                throw new Exception("Falha no banco");
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Mesagem", ex.Message);
+                var categorias = _db.Categorias.ToList();
+                model.CategoriaOptions = new SelectList(categorias, "Id", "Nome");
+
+                return View(model);
+            }
 
             return RedirectToAction("Index");
         }

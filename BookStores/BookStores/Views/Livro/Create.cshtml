@@ -1,7 +1,7 @@
 ﻿@model BookStores.ViewModels.EditorBookViewModel
 @{
     ViewBag.Title = "Criando um novo livro...";
-    Layout = "~/Views/Shared/_LayoutNovo.cshtml";
+    //Layout = "~/Views/Shared/_LayoutNovo.cshtml";
 }
 
 @helper MinhaFuncao(string nome)
@@ -18,19 +18,26 @@
 
 @using (Html.BeginForm())
 {
+    @Html.ValidationSummary(true, "", new { @class = "required" });
+
+    <div class="alert alert-danger">
+        @Html.ValidationMessage("Mensagem");
+    </div>
+   
+
     @Html.Partial("Partials/EditorBookPartial", Model);
 
     <button type="submit" class="btn btn-primary">Criar</button>
 }
 
-@section menu{
+@*@section menu{
     <div>
         Olá, você está na pagina criação
         <p>
             <a href="@Url.Action("Index")">Voltar</a>
         </p>
     </div>
-}
+}*@
 
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
